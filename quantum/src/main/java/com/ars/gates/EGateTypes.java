@@ -21,5 +21,9 @@ public enum EGateTypes {
 	/**
 	 * CNOT Gate
 	 */
-	E_CNotGate
+	E_CNotGate,
+	/**
+	 * Swap Gate
+	 */
+	E_SwapGate
 }

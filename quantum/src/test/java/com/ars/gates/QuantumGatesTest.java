@@ -60,4 +60,13 @@ public class QuantumGatesTest {
 		}
 	}
 
+	@Test
+	public void testSwapGate() {
+		double[][] expectedMatrix = { { 1, 0, 0, 0 }, { 0, 0, 1, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 1 } };
+		gate = factory.getGate(EGateTypes.E_SwapGate);
+		for (int i = 0; i < 2; i++) {
+			double delta = 0.5e-10;
+			assertArrayEquals(expectedMatrix[i], gate.getUnitaryMatrix()[i], delta);
+		}
+	}
 }
