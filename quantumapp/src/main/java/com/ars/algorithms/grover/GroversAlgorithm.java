@@ -34,13 +34,17 @@ public class GroversAlgorithm extends QuantumAlgorithms {
 	private BufferedWriter bw;
 	private ComplexNumber[][] diffusionMatrix;
 
-	public GroversAlgorithm() {
-		try {
-			bw = new BufferedWriter(new FileWriter(new File("D:\\out.csv")));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public GroversAlgorithm(String filePath) throws IOException, SecurityException {
+		bw = new BufferedWriter(new FileWriter(new File(filePath)));
+	}
+
+	public GroversAlgorithm() throws IOException, SecurityException {
+		File outputDir = new File("output");
+
+		if (!outputDir.exists())
+			outputDir.mkdir();
+
+		bw = new BufferedWriter(new FileWriter(new File(outputDir, "out.csv")));
 	}
 
 	private void generateDiffusionMatrix() {

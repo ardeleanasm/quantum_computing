@@ -35,12 +35,17 @@ public class JozsaAlgorithm extends QuantumAlgorithms {
 	private double[][]			gateHadamardN;
 	private BufferedWriter		writer;
 
-	public JozsaAlgorithm() {
-		try {
-			writer = new BufferedWriter(new FileWriter(new File("D:\\out.csv")));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public JozsaAlgorithm(String filePath) throws IOException, SecurityException {
+		writer = new BufferedWriter(new FileWriter(new File(filePath)));
+	}
+
+	public JozsaAlgorithm() throws IOException, SecurityException {
+		File outputDir = new File("output");
+
+		if (!outputDir.exists())
+			outputDir.mkdir();
+
+		writer = new BufferedWriter(new FileWriter(new File(outputDir, "out.csv")));
 	}
 
 	@Override
