@@ -1,7 +1,8 @@
 package com.ars.quantum.utils;
 
-import com.ars.quantum.exception.IncorrectMatrixSizeException;
 import static org.junit.Assert.*;
+import Jama.*;
+import org.jblas.*;
 
 
 import org.junit.After;
@@ -20,19 +21,23 @@ public class MatrixOperationsTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test(expected=IncorrectMatrixSizeException.class)
+	@Test
 	public void testMatrixAddDoublesDifferentLengths() {
 		double[][] a=new double[2][2];
 		double[][] b=new double[3][3];
-		double [][] c=MatrixOperations.add(a, b);
+		//double [][] c=MatrixOperations.add(a, b);
+		double [][] c=MatrixOperations.add(a, b).getArray();
 		assertNull(c);
 	}
 	
-	@Test(expected=IncorrectMatrixSizeException.class)
+	@Test
 	public void testMatrixAddComplexDifferentLengths() {
-		ComplexNumber[][] a=new ComplexNumber[2][2];
-		ComplexNumber[][] b=new ComplexNumber[3][3];
-		ComplexNumber [][] c=MatrixOperations.add(a, b);
+		/*ComplexNumber[][] a=new ComplexNumber[2][2];
+		ComplexNumber[][] b=new ComplexNumber[3][3];*/
+		ComplexDoubleMatrix a = new ComplexDoubleMatrix(2,2);
+		ComplexDoubleMatrix b = new ComplexDoubleMatrix(3,3);
+		//ComplexNumber [][] c=MatrixOperations.add(a, b);
+		ComplexDoubleMatrix c = MatrixOperations.add(a, b);
 		assertNull(c);
 	}
 	
@@ -40,7 +45,8 @@ public class MatrixOperationsTest {
 	public void testMatrixAddDouble(){
 		double[][] a={{1,1},{1,1}};
 		double[][] b={{2,2},{2,2}};
-		double[][] c=MatrixOperations.add(a, a);
+		//double[][] c=MatrixOperations.add(a, a);
+		double[][] c=MatrixOperations.add(a, a).getArray();
 		for(int i=0;i<2;i++){
 			for(int j=0;j<2;j++){
 				assertEquals(b[i][j], c[i][j],5e-10);
@@ -50,29 +56,38 @@ public class MatrixOperationsTest {
 	
 	@Test
 	public void testMatrixAddComplex(){
-		ComplexNumber[][] a={{new ComplexNumber(1,0),new ComplexNumber(1,0)},{new ComplexNumber(1,0),new ComplexNumber(1,0)}};
-		ComplexNumber[][] b={{new ComplexNumber(2,0),new ComplexNumber(2,0)},{new ComplexNumber(2,0),new ComplexNumber(2,0)}};
-		ComplexNumber[][] c=MatrixOperations.add(a, a);
-		for(int i=0;i<2;i++){
+		//ComplexNumber[][] a={{new ComplexNumber(1,0),new ComplexNumber(1,0)},{new ComplexNumber(1,0),new ComplexNumber(1,0)}};
+		//ComplexNumber[][] b={{new ComplexNumber(2,0),new ComplexNumber(2,0)},{new ComplexNumber(2,0),new ComplexNumber(2,0)}};
+		ComplexDoubleMatrix a =  new ComplexDoubleMatrix(3,3,1,0,1,0,1,0);
+		ComplexDoubleMatrix b = new ComplexDoubleMatrix(3,3,2,0,2,0,2,0);
+		ComplexDoubleMatrix c=MatrixOperations.add(a, a);
+		/*for(int i=0;i<2;i++){
 			for(int j=0;j<2;j++){
-				assertEquals(b[i][j], c[i][j]);
-			}
-		}
+				//assertEquals(b[i][j], c[i][j]);
+				assertEquals(b, c);
+				}
+			}*/
+		assertEquals(b, c);
+		
 	}
 	
-	@Test(expected=IncorrectMatrixSizeException.class)
+	@Test
 	public void testMatrixSubtractDoublesDifferentLengths() {
 		double[][] a=new double[2][2];
 		double[][] b=new double[3][3];
-		double [][] c=MatrixOperations.subtract(a, b);
+		//double [][] c=MatrixOperations.subtract(a, b);
+		double [][] c=MatrixOperations.subtract(a, b).getArray();
 		assertNull(c);
 	}
 	
-	@Test(expected=IncorrectMatrixSizeException.class)
+	@Test
 	public void testMatrixSubtractComplexDifferentLengths() {
-		ComplexNumber[][] a=new ComplexNumber[2][2];
-		ComplexNumber[][] b=new ComplexNumber[3][3];
-		ComplexNumber [][] c=MatrixOperations.subtract(a, b);
+		/*ComplexNumber[][] a=new ComplexNumber[2][2];
+		ComplexNumber[][] b=new ComplexNumber[3][3];*/
+		ComplexDoubleMatrix a =  new ComplexDoubleMatrix(2,2);
+		ComplexDoubleMatrix b = new ComplexDoubleMatrix(3,3);
+		
+		ComplexDoubleMatrix c=MatrixOperations.subtract(a, b);
 		assertNull(c);
 	}
 	
@@ -80,7 +95,8 @@ public class MatrixOperationsTest {
 	public void testMatrixSubtractDouble(){
 		double[][] a={{2,2},{2,2}};
 		double[][] b={{4,4},{4,4}};
-		double[][] c=MatrixOperations.subtract(b, a);
+		//double[][] c=MatrixOperations.subtract(b, a);
+		double[][] c=MatrixOperations.subtract(b, a).getArray();
 		for(int i=0;i<2;i++){
 			for(int j=0;j<2;j++){
 				assertEquals(a[i][j], c[i][j],5e-10);
@@ -90,35 +106,48 @@ public class MatrixOperationsTest {
 	
 	@Test
 	public void testMatrixSubtractComplex(){
-		ComplexNumber[][] a={{new ComplexNumber(2,2),new ComplexNumber(2,2)},{new ComplexNumber(2,2),new ComplexNumber(2,2)}};
-		ComplexNumber[][] b={{new ComplexNumber(4,4),new ComplexNumber(4,4)},{new ComplexNumber(4,4),new ComplexNumber(4,4)}};
-		ComplexNumber[][] c=MatrixOperations.subtract(b, a);
-		for(int i=0;i<2;i++){
+		/*ComplexNumber[][] a={{new ComplexNumber(2,2),new ComplexNumber(2,2)},{new ComplexNumber(2,2),new ComplexNumber(2,2)}};
+		ComplexNumber[][] b={{new ComplexNumber(4,4),new ComplexNumber(4,4)},{new ComplexNumber(4,4),new ComplexNumber(4,4)}};*/
+		
+		ComplexDoubleMatrix a =  new ComplexDoubleMatrix(3,3,2,2,2,2,2,2);
+		ComplexDoubleMatrix b = new ComplexDoubleMatrix(3,3,4,4,4,4,4,4);
+		ComplexDoubleMatrix c=MatrixOperations.subtract(b, a);
+		/*for(int i=0;i<2;i++){
 			for(int j=0;j<2;j++){
-				assertEquals(a[i][j], c[i][j]);
-			}
-		}
+				//assertEquals(a[i][j], c[i][j]);
+				assertEquals(a, c);
+				}
+			}*/
+		assertEquals(a, c);
+		
 	}
 	
 	@Test
 	public void testMatrixDoubleAreNotEqual(){
-		double[][] a={{2,2},{2,2}};
-		double[][] b={{4,4},{4,4}};
-		assertEquals(false, MatrixOperations.areEqual(a, b));
+		//double[][] a={{2,2},{2,2}};
+		//double[][] b={{4,4},{4,4}};
+		DoubleMatrix a = new DoubleMatrix(new double[][]{{2,2},{2,2}});
+		DoubleMatrix b = new DoubleMatrix(new double[][]{{4,4},{4,4}});
+		//assertEquals(false, MatrixOperations.areEqual(a, b));
+		assertEquals(false, MatrixOperations.areEqualreal(a, b));
 	}
 	
 	@Test
 	public void testMatrixDoubleAreEqual(){
-		double[][] a={{2,2},{2,2}};
-		
-		assertEquals(true, MatrixOperations.areEqual(a, a));
+		//double[][] a={{2,2},{2,2}};
+		DoubleMatrix a = new DoubleMatrix(new double[][]{{2,2},{2,2}});
+		//assertEquals(true, MatrixOperations.areEqual(a, a));
+		assertEquals(true, MatrixOperations.areEqualreal(a, a));
 	}
 	
 	@Test
 	public void testMatrixDoubleDifferentSizes(){
-		double[][] a=new double[2][2];
-		double[][] b=new double[3][3];
-		assertEquals(false, MatrixOperations.areEqual(a, b));
+		//double[][] a=new double[2][2];
+		//double[][] b=new double[3][3];
+		DoubleMatrix a = new DoubleMatrix(new double[2][2]);
+		DoubleMatrix b = new DoubleMatrix(new double[3][3]);
+		//assertEquals(false, MatrixOperations.areEqual(a, b));
+		assertEquals(false, MatrixOperations.areEqualreal(a, b));
 	}
 	
 	@Test
@@ -142,7 +171,7 @@ public class MatrixOperationsTest {
 		assertEquals(false, MatrixOperations.areEqual(a, b));
 	}
 	
-	@Test(expected=IncorrectMatrixSizeException.class)
+	@Test
 	public void testMatrixMultiplyDoubleDifferentSizes(){
 		double[][] a=new double[2][2];
 		double[][] b=new double[3][3];
@@ -154,30 +183,39 @@ public class MatrixOperationsTest {
 		double[][] a={{2,2},{2,2}};
 		double[][] b={{1,1},{1,1}};
 		double[][] c={{4,4},{4,4}};
-		double[][] d=MatrixOperations.multiply(a, b);
+		//double[][] d=MatrixOperations.multiply(a, b);
+		Matrix d = MatrixOperations.multiply(a, b);
 		for(int i=0;i<2;i++){
 			for(int j=0;j<2;j++){
-				assertEquals(c[i][j], d[i][j],5e-10);
+				//assertEquals(c[i][j], d[i][j],5e-10);
+				assertEquals(c[i][j], d.getArray()[i][j],5e-10);
 			}
 		}
 	}
 	
-	@Test(expected=IncorrectMatrixSizeException.class)
+	@Test
 	public void testMatrixMultiplyComplexDifferentSizes(){
-		ComplexNumber[][] a=new ComplexNumber[2][2];
-		ComplexNumber[][] b=new ComplexNumber[3][3];
+		/*ComplexNumber[][] a=new ComplexNumber[2][2];
+		ComplexNumber[][] b=new ComplexNumber[3][3];*/
+		
+		ComplexDoubleMatrix a =  new ComplexDoubleMatrix(2,2);
+		ComplexDoubleMatrix b = new ComplexDoubleMatrix(3,3);
 		assertNull(MatrixOperations.multiply(a, b));
 	}
 	
 	@Test
 	public void testMatrixMultiplyComplex(){
-		ComplexNumber[][] a={{new ComplexNumber(1,0),new ComplexNumber(1,0)},{new ComplexNumber(1,0),new ComplexNumber(1,0)}};
-		ComplexNumber[][] b={{new ComplexNumber(2,0),new ComplexNumber(2,0)},{new ComplexNumber(2,0),new ComplexNumber(2,0)}};
-		ComplexNumber[][] c={{new ComplexNumber(4,0),new ComplexNumber(4,0)},{new ComplexNumber(4,0),new ComplexNumber(4,0)}};
-		ComplexNumber[][] d=MatrixOperations.multiply(a, b);
+		//ComplexNumber[][] a={{new ComplexNumber(1,0),new ComplexNumber(1,0)},{new ComplexNumber(1,0),new ComplexNumber(1,0)}};
+		ComplexDoubleMatrix a  = new ComplexDoubleMatrix(3,3,1,0,1,0,1,0);
+		//ComplexNumber[][] b={{new ComplexNumber(2,0),new ComplexNumber(2,0)},{new ComplexNumber(2,0),new ComplexNumber(2,0)}};
+		ComplexDoubleMatrix b = new ComplexDoubleMatrix(3,3,2,0,2,0,2,0);
+		//ComplexNumber[][] c={{new ComplexNumber(4,0),new ComplexNumber(4,0)},{new ComplexNumber(4,0),new ComplexNumber(4,0)}};
+		ComplexDoubleMatrix c = new ComplexDoubleMatrix(3,3,4,0,4,0,4,0);
+		ComplexDoubleMatrix d=MatrixOperations.multiply(a, b);
 		for(int i=0;i<2;i++){
 			for(int j=0;j<2;j++){
-				assertEquals(c[i][j], d[i][j]);
+				//assertEquals(c[i][j], d[i][j]);
+				assertEquals(c, d);
 			}
 		}
 	}
