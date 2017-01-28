@@ -31,7 +31,10 @@ public class GateFactory extends GatesAbstractFactory {
 			gate = new CNotGate();
 			break;
 		case E_CPhaseShift:
-			gate=new E_CPhaseShift();
+			gate=new CPhaseShift();
+			break;
+		case E_IGate:
+			gate=new IdentityGate();
 			break;
 		}
 		return gate;

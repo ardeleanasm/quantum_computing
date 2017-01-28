@@ -29,6 +29,10 @@ public enum EGateTypes {
 	/**
 	 * Controlled Phase Shift
 	 */
-	E_CPhaseShift
+	E_CPhaseShift,
+	/**
+	 * Identity gate
+	 */
+	E_IGate
 	
 }

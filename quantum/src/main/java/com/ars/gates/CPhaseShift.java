@@ -4,7 +4,7 @@ import com.ars.complexnumbers.ComplexMath;
 import com.ars.complexnumbers.ComplexNumber;
 import com.ars.qubits.Qubit;
 
-public final class E_CPhaseShift implements IGate {
+public final class CPhaseShift implements IGate {
 
 	@Override
 	public Qubit applyGate(Qubit inputQubit, int[] targetPosition,
