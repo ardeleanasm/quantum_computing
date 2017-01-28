@@ -4,9 +4,9 @@
 	<groupId>com.ars.quantum</groupId>
 	<artifactId>QuantumComputingLib</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>QuantumComputingLib</name>
-	<url>http://maven.apache.org</url>
+	<url>https://github.com/ardeleanasm/quantum_computing</url>
 	<properties>
 		<jdk.version>1.8</jdk.version>
 		<junit.version>4.12</junit.version>
@@ -216,4 +216,12 @@
 			</plugin>
 		</plugins>
 	</reporting>
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/ardeleanasm/quantum_computing/issues</url>
+	</issueManagement>
+	<ciManagement>
+		<system>Travis CI</system>
+		<url>https://travis-ci.org/ardeleanasm/quantum_computing</url>
+	</ciManagement>
 </project>
