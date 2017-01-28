@@ -56,7 +56,8 @@ The Junit Tests from **quantum** project verify if operations on qubits are perf
 	QuantumGatesTest.class,
 	QuantumOperationsTest.class,
 	QubitTest.class,
-	MatrixOperationsTest.class
+	QRegisterTest.class,
+	QRegistersTest.class
 })
 public class AllTests {
 	
