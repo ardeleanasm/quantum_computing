@@ -15,6 +15,10 @@ public enum EGateTypes {
 	 */
 	E_XGate,
 	/**
+	 * Pauli-Y Gate
+	 */
+	E_YGate,
+	/**
 	 * Pauli-Z Gate
 	 */
 	E_ZGate,
@@ -23,7 +27,8 @@ public enum EGateTypes {
 	 */
 	E_CNotGate,
 	/**
-	 * Swap Gate
+	 * Controlled Phase Shift
 	 */
-	E_SwapGate
+	E_CPhaseShift
+	
 }

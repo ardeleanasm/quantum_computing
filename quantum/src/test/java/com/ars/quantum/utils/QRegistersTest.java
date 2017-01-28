@@ -27,7 +27,7 @@ public class QRegistersTest {
 	@Test
 	public void testInitialization() {
 		qRegister = new QRegister(REGISTER_LENGTH);
-		qRegister = QRegisters.fillWith(qRegister, QubitZero::new);
+		qRegister = QRegisterOperations.getInstance().fillWith(qRegister, QubitZero::new);
 		assertEquals(REGISTER_LENGTH, qRegister.size());
 		for (Qubit q : qRegister) {
 			assertEquals(new QubitZero(), q);
@@ -39,7 +39,7 @@ public class QRegistersTest {
 		Qubit q1 = new QubitOne();
 		Qubit q0 = new QubitZero();
 		try {
-			qRegister = QRegisters.fillWithPattern("1101");
+			qRegister = QRegisterOperations.getInstance().fillWithPattern("1101");
 		} catch (RegisterOverflowException e) {
 
 			e.printStackTrace();

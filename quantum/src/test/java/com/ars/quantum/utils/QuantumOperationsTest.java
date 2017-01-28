@@ -8,22 +8,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.ars.complexnumbers.ComplexNumber;
-import com.ars.gates.EGateTypes;
-import com.ars.gates.GateProducer;
-import com.ars.gates.GatesAbstractFactory;
-import com.ars.gates.IGate;
 import com.ars.qubits.QRegister;
 import com.ars.qubits.Qubit;
 import com.ars.qubits.QubitOne;
 import com.ars.qubits.QubitZero;
 
 public class QuantumOperationsTest {
-	private IGate					gate;
-	private GatesAbstractFactory	factory;
 
 	@Before
 	public void setUp() throws Exception {
-		factory = GateProducer.getGateFactory();
 
 	}
 
@@ -71,27 +64,7 @@ public class QuantumOperationsTest {
 
 	}
 
-	@Test
-	public void testApplyXGate() {
-		Qubit expectedResultQ0 = new Qubit(new ComplexNumber(0, 0.0), new ComplexNumber(1, 0.0));
-		Qubit expectedResultQ1 = new Qubit(new ComplexNumber(1, 0.0), new ComplexNumber(0, 0.0));
-		Qubit q0 = new QubitZero();
-		Qubit q1 = new QubitOne();
-		gate = factory.getGate(EGateTypes.E_XGate);
-		assertEquals(true, expectedResultQ0.equals(QuantumOperations.applyGate(q0, gate)));
-		assertEquals(true, expectedResultQ1.equals(QuantumOperations.applyGate(q1, gate)));
-	}
 
-	@Test
-	public void testApplyXGateWithMatrixParameter() {
-		Qubit expectedResultQ0 = new Qubit(new ComplexNumber(0, 0.0), new ComplexNumber(1, 0.0));
-		Qubit expectedResultQ1 = new Qubit(new ComplexNumber(1, 0.0), new ComplexNumber(0, 0.0));
-		Qubit q0 = new QubitZero();
-		Qubit q1 = new QubitOne();
-		gate = factory.getGate(EGateTypes.E_XGate);
-		assertEquals(true, expectedResultQ0.equals(QuantumOperations.applyGate(q0, gate.getUnitaryMatrix())));
-		assertEquals(true, expectedResultQ1.equals(QuantumOperations.applyGate(q1, gate.getUnitaryMatrix())));
-	}
 
 	@Test
 	public void testCalculateOuterProduct() {

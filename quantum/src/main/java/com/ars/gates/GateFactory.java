@@ -21,14 +21,18 @@ public class GateFactory extends GatesAbstractFactory {
 		case E_XGate:
 			gate = new XGate();
 			break;
+		case E_YGate:
+			gate=new YGate();
+			break;
 		case E_ZGate:
 			gate = new ZGate();
 			break;
 		case E_CNotGate:
 			gate = new CNotGate();
 			break;
-		case E_SwapGate:
-			gate = new SwapGate();
+		case E_CPhaseShift:
+			gate=new E_CPhaseShift();
+			break;
 		}
 		return gate;
 	}

@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.ars.quantum.exception.RegisterOverflowException;
-import com.ars.quantum.utils.QRegisters;
+import com.ars.quantum.utils.QRegisterOperations;
 
 
 public class QRegister implements Iterable<Qubit> {
@@ -19,7 +19,7 @@ public class QRegister implements Iterable<Qubit> {
 	}
 
 	public QRegister initialize() {
-		qubitRegister = QRegisters.fillWith(qubitRegister, QubitZero::new, registerSize);
+		qubitRegister = QRegisterOperations.getInstance().fillWith(qubitRegister, QubitZero::new, registerSize);
 		return this;
 	}
 

@@ -1,11 +1,9 @@
 package com.ars.quantum.utils;
 
 import com.ars.quantum.exception.IncorrectMatrixSizeException;
-import java.util.List;
 
 import com.ars.complexnumbers.ComplexMath;
 import com.ars.complexnumbers.ComplexNumber;
-import com.ars.gates.IGate;
 import com.ars.qubits.QRegister;
 import com.ars.qubits.Qubit;
 
@@ -76,81 +74,9 @@ public class QuantumOperations {
 		return new Qubit(complexNumberList);
 	}
 
-	private static Qubit apply(Qubit q, double[][] gate) {
-		int qubitVectorLength = q.getQubit().length;
-		int gateMatrixLength = gate.length;
-		Qubit q0;
-		ComplexNumber[] complexNumberList = new ComplexNumber[gateMatrixLength];
-		ComplexNumber[] qubitArray = q.getQubit();
-		double[][] unitaryMatrix = gate;
-
-		for (int i = 0; i < gateMatrixLength; i++) {
-			ComplexNumber sum = new ComplexNumber();
-			for (int j = 0; j < qubitVectorLength; j++) {
-				sum = ComplexMath.add(sum, ComplexMath.multiply(qubitArray[j], unitaryMatrix[i][j]));
-			}
-			complexNumberList[i] = sum;
-		}
-		q0 = new Qubit(complexNumberList);
-		return q0;
-
-	}
-	
-	private static Qubit apply(Qubit q, ComplexNumber[][] gate) {
-		int qubitVectorLength = q.getQubit().length;
-		int gateMatrixLength = gate.length;
-		Qubit q0;
-		ComplexNumber[] complexNumberList = new ComplexNumber[gateMatrixLength];
-		ComplexNumber[] qubitArray = q.getQubit();
-		ComplexNumber[][] unitaryMatrix = gate;
-
-		for (int i = 0; i < gateMatrixLength; i++) {
-			ComplexNumber sum = new ComplexNumber();
-			for (int j = 0; j < qubitVectorLength; j++) {
-				sum = ComplexMath.add(sum, ComplexMath.multiply(qubitArray[j], unitaryMatrix[i][j]));
-			}
-			complexNumberList[i] = sum;
-		}
-		q0 = new Qubit(complexNumberList);
-		return q0;
-
-	}
-
-	/**
-	 * Apply a specified Gate to a qubit.
-	 * 
-	 * @param q qubit.
-	 * @param gate gate that will be applied
-	 * @return qubit
-	 */
-	public static Qubit applyGate(Qubit q, IGate gate) {
-		return apply(q, gate.getUnitaryMatrix());
-	}
 
 	
-	/**
-	 * Apply a specified Gate to a qubit.
-	 * 
-	 * @param q qubit.
-	 * @param gate gate that will be applied
-	 * @return qubit
-	 */
-	public static Qubit applyGate(Qubit q, double[][] gate) {
-		return apply(q, gate);
-	}
 	
-	/**
-	 * Apply a specified Gate to a qubit.
-	 * 
-	 * @param q qubit.
-	 * @param gate gate that will be applied
-	 * @return qubit
-	 */
-	public static Qubit applyGate(Qubit q,ComplexNumber[][] gate){
-		return apply(q, gate);
-
-	}
-
 	private static ComplexNumber[][] calculateTranspose(ComplexNumber[] z) {
 		ComplexNumber[][] transpose = new ComplexNumber[1][z.length];
 		for (int i = 0; i < z.length; i++) {
