@@ -44,9 +44,9 @@ public class QuantumGatesTest {
 			e.printStackTrace();
 		}
 		
-		Qubit target = QuantumOperations.entangle(targetRegister); 
+		Qubit target = regOps.entangle(targetRegister); 
 		target=gate.applyGate(target, new int[]{0}, null, 3);	
-		assertEquals(target,QuantumOperations.entangle(expectedRegister));
+		assertEquals(target,regOps.entangle(expectedRegister));
 
 	}
 	
@@ -64,9 +64,9 @@ public class QuantumGatesTest {
 			e.printStackTrace();
 		}
 		
-		Qubit target = QuantumOperations.entangle(targetRegister); 
+		Qubit target = regOps.entangle(targetRegister); 
 		target=gate.applyGate(target, new int[]{2}, null, 3);	
-		assertEquals(target ,QuantumOperations.entangle(expectedRegister));
+		assertEquals(target ,regOps.entangle(expectedRegister));
 
 	}
 	
@@ -86,9 +86,9 @@ public class QuantumGatesTest {
 			e.printStackTrace();
 		}
 		
-		Qubit target = QuantumOperations.entangle(targetRegister); 
+		Qubit target = regOps.entangle(targetRegister); 
 		target=gate.applyGate(target, new int[]{0,1}, null, 3);	
-		assertEquals(target ,QuantumOperations.entangle(expectedRegister));
+		assertEquals(target ,regOps.entangle(expectedRegister));
 
 	}
 
@@ -108,9 +108,9 @@ public class QuantumGatesTest {
 			e.printStackTrace();
 		}
 		expectedRegister.change(0, q);
-		Qubit target = QuantumOperations.entangle(targetRegister); 
+		Qubit target = regOps.entangle(targetRegister); 
 		target=gate.applyGate(target, new int[]{0}, null, 3);	
-		assertEquals(target , QuantumOperations.entangle(expectedRegister));
+		assertEquals(target , regOps.entangle(expectedRegister));
 	}
 	
 	@Test
@@ -128,9 +128,9 @@ public class QuantumGatesTest {
 			e.printStackTrace();
 		}
 		expectedRegister.change(0, q);
-		Qubit target = QuantumOperations.entangle(targetRegister); 
+		Qubit target = regOps.entangle(targetRegister); 
 		target=gate.applyGate(target, new int[]{0}, null, 3);	
-		assertEquals(target , QuantumOperations.entangle(expectedRegister));
+		assertEquals(target , regOps.entangle(expectedRegister));
 	}
 
 	@Test
@@ -147,9 +147,9 @@ public class QuantumGatesTest {
 			e.printStackTrace();
 		}
 		
-		Qubit target = QuantumOperations.entangle(targetRegister); 
+		Qubit target = regOps.entangle(targetRegister); 
 		target=gate.applyGate(target, new int[]{2}, new int[]{0,1}, 3);	
-		assertEquals(target , QuantumOperations.entangle(expectedRegister));
+		assertEquals(target , regOps.entangle(expectedRegister));
 
 	}
 	
@@ -167,9 +167,9 @@ public class QuantumGatesTest {
 			e.printStackTrace();
 		}
 		
-		Qubit target = QuantumOperations.entangle(targetRegister); 
+		Qubit target = regOps.entangle(targetRegister); 
 		target=gate.applyGate(target, new int[]{2}, new int[]{0,1}, 3);	
-		assertEquals(target ,QuantumOperations.entangle(expectedRegister));
+		assertEquals(target ,regOps.entangle(expectedRegister));
 
 	}
 	
@@ -187,9 +187,9 @@ public class QuantumGatesTest {
 			e.printStackTrace();
 		}
 		
-		Qubit target = QuantumOperations.entangle(targetRegister); 
+		Qubit target = regOps.entangle(targetRegister); 
 		target=gate.applyGate(target, new int[]{2}, new int[]{0,1}, 3);	
-		assertEquals(target ,QuantumOperations.entangle(expectedRegister));
+		assertEquals(target ,regOps.entangle(expectedRegister));
 
 	}
 	
@@ -207,9 +207,9 @@ public class QuantumGatesTest {
 			e.printStackTrace();
 		}
 		
-		Qubit target = QuantumOperations.entangle(targetRegister); 
+		Qubit target = regOps.entangle(targetRegister); 
 		target=gate.applyGate(target, new int[]{2}, new int[]{0,1}, 3);	
-		assertEquals(target , QuantumOperations.entangle(expectedRegister));
+		assertEquals(target , regOps.entangle(expectedRegister));
 
 	}
 	@Test
@@ -227,7 +227,7 @@ public class QuantumGatesTest {
 			e.printStackTrace();
 		}
 		expectedRegister.change(0, q);
-		Qubit target = QuantumOperations.entangle(targetRegister); 
+		Qubit target = regOps.entangle(targetRegister); 
 		target=gate.applyGate(target, new int[]{0}, null, 3);	
 		
 		
@@ -249,9 +249,9 @@ public class QuantumGatesTest {
 			e.printStackTrace();
 		}
 		expectedRegister.change(0, q);
-		Qubit target = QuantumOperations.entangle(targetRegister); 
+		Qubit target = regOps.entangle(targetRegister); 
 		target=gate.applyGate(target, new int[]{0}, null, 3);	
-		assertEquals(target ,QuantumOperations.entangle(expectedRegister));
+		assertEquals(target ,regOps.entangle(expectedRegister));
 	}
 	
 	@Test
@@ -268,9 +268,28 @@ public class QuantumGatesTest {
 			e.printStackTrace();
 		}
 		expectedRegister.change(0, new QubitPlus());
-		Qubit target = QuantumOperations.entangle(targetRegister); 
+		Qubit target = regOps.entangle(targetRegister); 
 		target=gate.applyGate(target, new int[]{0}, null, 3);	
-		assertEquals(target , QuantumOperations.entangle(expectedRegister));
+		assertEquals(target , regOps.entangle(expectedRegister));
+	}
+	
+	@Test
+	public void testApplyIdentityGate(){
+		QRegister targetRegister=new QRegister(3);
+		QRegister expectedRegister=new QRegister(3);
+		QRegisterOperations regOps=QRegisterOperations.getInstance();
+		gate=factory.getGate(EGateTypes.E_IGate);	
+		
+		try {
+			targetRegister=regOps.fillWithPattern("000");
+			expectedRegister=regOps.fillWithPattern("000");
+		} catch (RegisterOverflowException e) {
+			e.printStackTrace();
+		}
+		
+		Qubit target = regOps.entangle(targetRegister); 
+		target=gate.applyGate(target, null, null, 3);	
+		assertEquals(target , regOps.entangle(expectedRegister));
 	}
 	
 	

@@ -47,6 +47,24 @@ public class QRegisterOperations {
 		return qreg;
 	}
 
-	
+	/**
+	 * Perform the tensor product between two or more qubits. Example, for three
+	 * qubits |0>, |0> and |1>, the result will be |001>.
+	 * 
+	 * @param quantumRegister
+	 * @return qubit the tensor product of the two qubits.
+	 */
+	public Qubit entangle(QRegister quantumRegister) {
+		if (quantumRegister.size() < 2) {
+			return null;
+		}
+		Qubit bufferQubit = quantumRegister.get(0);
+		for (int i = 1; i < quantumRegister.size(); i++) {
+			bufferQubit = QuantumOperations.entangle(bufferQubit,
+					quantumRegister.get(i));
+
+		}
+		return bufferQubit;
+	}
 
 }

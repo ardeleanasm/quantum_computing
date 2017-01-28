@@ -50,4 +50,15 @@ public class QRegistersTest {
 		assertEquals(q0, qRegister.get(2));
 		assertEquals(q1, qRegister.get(3));
 	}
+	
+
+	@Test
+	public void testEntangleWithThreeQubitsAllCombinations() {
+		QRegister qRegister = new QRegister(3).initialize();
+				Qubit qubit = new QubitZero();
+		qubit = QuantumOperations.entangle(qubit, new QubitZero());
+		qubit = QuantumOperations.entangle(qubit, new QubitZero());
+		assertEquals(qubit, QRegisterOperations.getInstance().entangle(qRegister));
+
+	}
 }

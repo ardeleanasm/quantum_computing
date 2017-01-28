@@ -54,15 +54,6 @@ public class QuantumOperationsTest {
 		}
 	}
 
-	@Test
-	public void testEntangleWithThreeQubitsAllCombinations() {
-		QRegister qRegister = new QRegister(3).initialize();
-		Qubit qubit = new QubitZero();
-		qubit = QuantumOperations.entangle(qubit, new QubitZero());
-		qubit = QuantumOperations.entangle(qubit, new QubitZero());
-		assertEquals(qubit, QuantumOperations.entangle(qRegister));
-
-	}
 
 
 

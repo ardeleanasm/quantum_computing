@@ -42,23 +42,7 @@ public class QuantumOperations {
 		return bufferQubit;
 	}
 	
-	/**
-	 * Perform the tensor product between two or more qubits. Example, for three
-	 * qubits |0>, |0> and |1>, the result will be |001>.
-	 * 
-	 * @param quantumRegister 
-	 * @return qubit the tensor product of the two qubits.
-	 */
-	public static Qubit entangle(QRegister quantumRegister) {
-		if (quantumRegister.size() < 2) {
-			return null;
-		}
-		Qubit bufferQubit = quantumRegister.get(0);
-		for (int i = 1; i < quantumRegister.size(); i++) {
-			bufferQubit = performTensorProduct(bufferQubit, quantumRegister.get(i));
-		}
-		return bufferQubit;
-	}
+
 
 	private static Qubit performTensorProduct(Qubit q1, Qubit q2) {
 		int len1 = q1.getQubit().length;
