@@ -10,7 +10,7 @@
 	<properties>
 		<jdk.version>1.8</jdk.version>
 		<junit.version>4.12</junit.version>
-		<log4j.version>2.6.2</log4j.version>
+		<log4j.version>2.16.0</log4j.version>
 		<quantumlib.version>1.0-SNAPSHOT</quantumlib.version>
 	</properties>
 	<dependencies>
